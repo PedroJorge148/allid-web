@@ -1,5 +1,3 @@
-// import { Container } from '@mui/material'
-
 import {
   Avatar,
   Button,
@@ -10,7 +8,11 @@ import {
   Typography,
 } from '@mui/material'
 
+import GoogleIcon from '@mui/icons-material/Google'
+
 // import { NavLink } from 'react-router-dom'
+
+import styles from './SignUp.module.css'
 
 export function SignUp() {
   return (
@@ -35,9 +37,7 @@ export function SignUp() {
           borderRadius: 3,
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          {/* <LockOutlinedIcon /> */}
-        </Avatar>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
         <Typography component="h1" variant="h5">
           Cadastrar | All ID
         </Typography>
@@ -60,7 +60,6 @@ export function SignUp() {
             name="email"
             autoComplete="email"
             required
-            autoFocus
           />
           <TextField
             margin="normal"
@@ -76,10 +75,31 @@ export function SignUp() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 1 }}
+            sx={{ mt: 3, mb: 3, textTransform: 'none' }}
           >
             Cadastrar
           </Button>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+            }}
+          >
+            <Box component="div" className={styles.or}>
+              <span>ou</span>
+            </Box>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="success"
+              sx={{ mb: 2, textTransform: 'none' }}
+            >
+              <GoogleIcon sx={{ marginRight: 1 }} />
+              Entrar com Google
+            </Button>
+          </Box>
         </Box>
       </Paper>
     </Container>
