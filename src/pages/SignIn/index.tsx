@@ -69,18 +69,6 @@ export function SignIn() {
           Entrar | All ID
         </Typography>
         <Box component="form" onSubmit={handleSubmit(handleLoginSubmit)}>
-          // <TextField
-          //   margin="normal"
-          //   fullWidth
-          //   id="email"
-          //   label="Email"
-          //   autoComplete="email"
-          //   required
-          //   autoFocus
-          //   {...register('email')}
-          //   error={!!errors.email}
-          //   helperText={errors?.email ? errors.email.message : null}
-          // />
           <TextField
             margin="normal"
             required
