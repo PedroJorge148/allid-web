@@ -17,4 +17,4 @@ netlify:
   image: node:latest
   script:
     - npm install -g netlify-cli
-    - netlify deploy --dir-build --prod
+    - netlify deploy --dir=dist --prod
