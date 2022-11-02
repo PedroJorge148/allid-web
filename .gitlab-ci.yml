@@ -2,12 +2,6 @@ stages:
   - build
   - deploy 
 
-test project:
-  image: node:latest
-  script:
-    - yarn install
-    - yarn test
-
 build project:
   image: node:latest
   script:
