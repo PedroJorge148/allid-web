@@ -10,7 +10,7 @@ build project:
     - yarn build
   artifacts:
     paths:
-      - build/
+      - dist/
 
 netlify:
   stage: deploy
