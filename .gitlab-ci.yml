@@ -3,13 +3,13 @@ stages:
   - build
 
 test project:
-  image: node:15
+  image: node:latest
   script:
     - yarn install
     - yarn test
 
 build project:
-  image: node:15
+  image: node:latest
   script:
     - yarn install
     - yarn build
