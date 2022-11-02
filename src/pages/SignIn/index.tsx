@@ -114,7 +114,7 @@ export function SignIn() {
             sx={{ mb: 2, textTransform: 'none' }}
           >
             <GoogleIcon sx={{ marginRight: 1 }} />
-            Entrar com Google
+            Entrar com Google Testando
           </Button>
         </Box>
       </Paper>
