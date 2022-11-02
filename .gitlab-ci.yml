@@ -1,6 +1,6 @@
 stages:
   - build
-  - deploy 
+  - deploy
 
 build project:
   image: node:latest
@@ -17,4 +17,3 @@ netlify:
   script:
     - npm install -g netlify-cli
     - netlify deploy --dir-build --prod
-  
