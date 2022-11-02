@@ -3,6 +3,7 @@ stages:
   - deploy
 
 build project:
+  stage: build
   image: node:latest
   script:
     - yarn install
