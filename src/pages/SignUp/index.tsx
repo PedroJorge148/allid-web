@@ -7,14 +7,36 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-
 import GoogleIcon from '@mui/icons-material/Google'
-
-// import { NavLink } from 'react-router-dom'
-
 import styles from './SignUp.module.css'
+import * as zod from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const CadValidationSchema = zod.object({
+  name: zod.string().min(10, 'Digite seu nome completo.'),
+  email: zod
+    .string()
+    .min(1, 'Informe o email.')
+    .email({ message: 'Endereço de email inválido.' }),
+  password: zod.string().min(4, 'A senha precisa ter no mínimo 4 caracteres.'),
+})
+
+type CadData = zod.infer<typeof CadValidationSchema>
 
 export function SignUp() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CadData>({
+    resolver: zodResolver(CadValidationSchema),
+  })
+
+  function handleCadSubmit(data: CadData) {
+    console.log(data)
+  }
+
   return (
     <Container
       component="main"
@@ -41,35 +63,45 @@ export function SignUp() {
         <Typography component="h1" variant="h5">
           Cadastrar | All ID
         </Typography>
-        <Box component="form" /* onSubmit={} */ noValidate>
+        <Box
+          component="form"
+          onSubmit={handleSubmit(handleCadSubmit)}
+          noValidate
+        >
           <TextField
             margin="normal"
             fullWidth
-            id="email"
+            id="name"
             label="Nome"
-            name="name"
             autoComplete="name"
             required
             autoFocus
+            {...register('name')}
+            error={!!errors.name}
+            helperText={errors?.name ? errors.name.message : ''}
           />
           <TextField
             margin="normal"
             fullWidth
             id="email"
             label="Email"
-            name="email"
             autoComplete="email"
             required
+            {...register('email')}
+            error={!!errors.email}
+            helperText={errors?.email ? errors.email.message : ''}
           />
           <TextField
             margin="normal"
             required
             fullWidth
-            name="password"
             label="Senha"
             type="password"
             id="password"
-            autoComplete="current-password"
+            autoComplete="password"
+            {...register('password')}
+            error={!!errors.password}
+            helperText={errors?.password ? errors.password.message : ''}
           />
           <Button
             type="submit"
