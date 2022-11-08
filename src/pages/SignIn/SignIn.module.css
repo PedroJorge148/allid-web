@@ -11,12 +11,12 @@
 
 .or span {
   display: inline-block;
-    color: #6e6e6e;
-    padding: 0 10px;
-    background-color: #fff;
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+  color: #6e6e6e;
+  padding: 0 10px;
+  background-color: #fff;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
