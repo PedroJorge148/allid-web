@@ -8,7 +8,6 @@ import {
   Typography,
 } from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google'
-import styles from './SignUp.module.css'
 import * as zod from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -118,8 +117,14 @@ export function SignUp() {
               width: '100%',
             }}
           >
-            <Box component="div" className={styles.or}>
-              <span>ou</span>
+            <Box
+              component="div"
+              className="w-[280px] self-center text-center mt-2 mb-5 bg-gradient bg-repeat-x bg-left"
+              style={{ backgroundSize: '1px 3px' }}
+            >
+              <span className="inline-block text-[#6e6e6e] px-[10px] bg-white leading-4 font-medium tracking-wider uppercase">
+                ou
+              </span>
             </Box>
             <Button
               type="submit"
