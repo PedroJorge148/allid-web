@@ -91,7 +91,7 @@ export function Nav() {
                 <NavLink to="/dashboard">Início</NavLink>
               </MenuItem>
               <MenuItem className="flex flex-col">
-                <NavLink to="dashboard/reginfo">
+                <NavLink to="/dashboard/reginfo">
                   Cadastro de Informações
                 </NavLink>
               </MenuItem>
