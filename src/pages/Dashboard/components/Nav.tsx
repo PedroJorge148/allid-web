@@ -1,176 +1,184 @@
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu'
-import Container from '@mui/material/Container'
-import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
-import Tooltip from '@mui/material/Tooltip'
-import MenuItem from '@mui/material/MenuItem'
-import { MouseEvent, useState } from 'react'
+import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Bell, Info, List, User, X } from 'phosphor-react'
 
-import Logo from '../../../assets/LogoV2.svg'
-import { NavLink } from 'react-router-dom'
+const user = {
+  name: 'Tom Cook',
+  email: 'tom@example.com',
+}
+const navigation = [
+  { name: 'Início', href: '/dashboard', current: true },
+  { name: 'Cadastro de Usuários', href: '#', current: false },
+]
+const userNavigation = [
+  { name: 'Seu perfil', href: '#' },
+  { name: 'Configurações', href: '#' },
+  { name: 'Sair', href: '#' },
+]
 
-// const pages = ['Início', 'Cadastro de informações']
-const settings = ['Meu Perfil', 'Sair']
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(' ')
+}
 
 export function Nav() {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
-
-  const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget)
-  }
-  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget)
-  }
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null)
-  }
-
   return (
-    <AppBar position="static" color="transparent" className="text-black">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <img src={Logo} alt="Logo" width="100" />
-          </Typography>
+    <>
+      <div className="min-h-full">
+        <Disclosure as="nav" className="bg-zinc-100">
+          {({ open }) => (
+            <>
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="flex h-16 items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <span className="flex items-center gap-1 px-3 py-2 bg-blue-600 text-white font-medium text-sm leading-snug rounded-lg shadow-md hover:bg-blue-700">
+                        <Info className="h-6 w-6" weight="fill" />
+                        All ID
+                      </span>
+                    </div>
+                    <div className="hidden md:block">
+                      <div className="ml-10 flex items-baseline space-x-4">
+                        {navigation.map((item) => (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            className="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2  rounded-md text-sm font-medium transition-colors"
+                            aria-current={item.current ? 'page' : undefined}
+                          >
+                            {item.name}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="hidden md:block">
+                    <div className="ml-4 flex items-center md:ml-6">
+                      <button
+                        type="button"
+                        className="rounded-full p-1 text-gray-800 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span className="sr-only">View notifications</span>
+                        <Bell className="h-8 w-8" aria-hidden="true" />
+                      </button>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              <MenuItem className="flex flex-col">
-                <NavLink to="/dashboard">Início</NavLink>
-              </MenuItem>
-              <MenuItem className="flex flex-col">
-                <NavLink to="/dashboard/reginfo">
-                  Cadastro de Informações
-                </NavLink>
-              </MenuItem>
-            </Menu>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <img src={Logo} alt="Logo" width="100" />
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{
-                my: 2,
-                color: 'black',
-                display: 'block',
-                textTransform: 'initial',
-              }}
-            >
-              <NavLink to="/dashboard">Início</NavLink>
-            </Button>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{
-                my: 2,
-                color: 'black',
-                display: 'block',
-                textTransform: 'initial',
-              }}
-            >
-              <NavLink to="/reginfo">Cadastro de Informações</NavLink>
-            </Button>
-          </Box>
+                      {/* Profile dropdown */}
+                      <Menu as="div" className="relative ml-3">
+                        <div>
+                          <Menu.Button className="flex max-w-xs items-center rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                            <span className="sr-only">Open user menu</span>
+                            <User className="h-8 w-8 rounded-full" />
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            {userNavigation.map((item) => (
+                              <Menu.Item key={item.name}>
+                                {({ active }) => (
+                                  <a
+                                    href={item.href}
+                                    className={classNames(
+                                      active ? 'bg-gray-100' : '',
+                                      'block px-4 py-2 text-sm text-gray-700',
+                                    )}
+                                  >
+                                    {item.name}
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            ))}
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    </div>
+                  </div>
+                  <div className="-mr-2 flex md:hidden">
+                    {/* Mobile menu button */}
+                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <span className="sr-only">Open main menu</span>
+                      {open ? (
+                        <X className="block h-6 w-6" aria-hidden="true" />
+                      ) : (
+                        <List className="block h-6 w-6" aria-hidden="true" />
+                      )}
+                    </Disclosure.Button>
+                  </div>
+                </div>
+              </div>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar sx={{ color: 'primary.main' }}></Avatar>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+              <Disclosure.Panel className="md:hidden">
+                <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+                  {navigation.map((item) => (
+                    <Disclosure.Button
+                      key={item.name}
+                      as="a"
+                      href={item.href}
+                      className={classNames(
+                        item.current
+                          ? 'bg-gray-900 text-white'
+                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'block px-3 py-2 rounded-md text-base font-medium',
+                      )}
+                      aria-current={item.current ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  ))}
+                </div>
+                <div className="border-t border-gray-700 pt-4 pb-3">
+                  <div className="flex items-center px-5">
+                    <div className="flex-shrink-0">
+                      <User className="h-8 w-8 rounded-full" />
+                    </div>
+                    <div className="ml-3">
+                      <div className="text-base font-medium leading-none text-white">
+                        {user.name}
+                      </div>
+                      <div className="text-sm font-medium leading-none text-gray-400">
+                        {user.email}
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    >
+                      <span className="sr-only">View notifications</span>
+                      <Bell className="h-6 w-6" aria-hidden="true" />
+                    </button>
+                  </div>
+                  <div className="mt-3 space-y-1 px-2">
+                    {userNavigation.map((item) => (
+                      <Disclosure.Button
+                        key={item.name}
+                        as="a"
+                        href={item.href}
+                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                      >
+                        {item.name}
+                      </Disclosure.Button>
+                    ))}
+                  </div>
+                </div>
+              </Disclosure.Panel>
+            </>
+          )}
+        </Disclosure>
+
+        <header className="bg-white shadow">
+          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              Dashboard
+            </h1>
+          </div>
+        </header>
+      </div>
+    </>
   )
 }

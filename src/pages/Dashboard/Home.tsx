@@ -1,36 +1,27 @@
-import { Typography } from '@mui/material'
+import { UserCircle } from 'phosphor-react'
+import { NavLink } from 'react-router-dom'
 
 export function Home() {
   return (
-    <div>
-      <div className="flex m-auto w-[80%] mt-10 items-end">
-        <Typography>Hey, Pedro! Você está no All ID</Typography>
-      </div>
-      <div className="flex justify-around flex-wrap w-[80%] m-auto bg-zinc-700">
-        <a
-          className="flex items-center justify-center h-20 w-[30%] m-10 rounded-lg bg-teal-300 text-black "
-          href="#"
-        >
-          Buscar dados
-        </a>
-        <a
-          className="flex items-center justify-center h-20 w-[30%] m-10 rounded-lg bg-teal-300 text-black "
-          href="#"
-        >
-          Solicitar dados
-        </a>
-        <a
-          className="flex items-center justify-center h-20 w-[30%] m-10 rounded-lg bg-teal-300 text-black "
-          href="#"
-        >
-          Editar perfil
-        </a>
-        <a
-          className="flex items-center justify-center h-20 w-[30%] m-10 rounded-lg bg-teal-300 text-black "
-          href="#"
-        >
-          Revogar dados
-        </a>
+    <div className="p-8">
+      <div className="max-w-sm border rounded-lg p-4 bg-zinc-50 shadow hover:shadow-lg">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1">
+            <UserCircle className="h-10 w-10 text-blue-600" weight="fill" />
+            <h2 className="text-gray-800 text-xl">Usuários</h2>
+          </div>
+          <NavLink
+            to="#"
+            className="px-4 py-2 bg-blue-600 text-white font-medium text-sm leading-snug rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800"
+          >
+            Acessar
+          </NavLink>
+        </div>
+        <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5"></div>
+        <p className="mt-3 text-sm text-gray-700">
+          Visualize, cadastre, atualize e remova usuários. Lorem ipsum dolor sit
+          amet, consectetur adipisicing elit.
+        </p>
       </div>
     </div>
   )
