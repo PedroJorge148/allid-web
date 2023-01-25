@@ -1,276 +1,151 @@
-import { Typography } from '@mui/material'
-
 export function RegDataUser() {
   return (
-    <div>
-      <div className="flex flex-col w-[85%] m-auto mt-10">
-        <Typography className="font-bold">
-          Cadastro de informações {'->'} Cadastro de dados gerais
-        </Typography>
-        <div className="flex flex-col p-6 bg-zinc-400 rounded-lg border-b-2-cyan-500">
-          <form className="flex flex-wrap gap-3">
-            <div className="flex flex-col">
-              <fieldset className="flex flex-col gap-3 p-3 border border-solid border-gray-700">
-                <legend className="px-2 font-semibold">Dados pessoais</legend>
-                <div className="flex flex-col flex-1 gap-2">
-                  <label htmlFor="nome" className="font-semibold">
-                    Nome completo
-                  </label>
-                  <input
-                    type="text"
-                    id="nome"
-                    name="nome"
-                    placeholder="Antonio da Silva Pereira"
-                    className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="flex flex-col">
-                    <label htmlFor="data_nasc" className="font-semibold">
-                      Data de nascimento
-                    </label>
-                    <input
-                      type="date"
-                      id="data_nasc"
-                      name="data_nasc"
-                      className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="sexo" className="font-semibold">
-                      Sexo
-                    </label>
-                    <select
-                      name="sexo"
-                      id="sexo"
-                      className="bg-zinc-900 py-1.5 px-2 rounded text-sm text-zinc-400"
+    <>
+      <div className="md:grid md:grid-cols-3 md:gap-6 bg-zinc-100 py-4">
+        <div className="md:col-span-1">
+          <div className="px-4 sm:p-4">
+            <h3 className="text-lg font-medium leading-6 text-gray-800">
+              Cadastrar usuários
+            </h3>
+            <p className="mt-1 text-sm text-gray-700">
+              Use um endereço de email permanente.
+            </p>
+          </div>
+        </div>
+        <div className="mt-5 md:col-span-2 ">
+          <form>
+            <div className="overflow-hidden shadow sm:rounded-md mr-4">
+              <div className="bg-white px-4 py-5 sm:p-6">
+                <div className="grid grid-cols-6 gap-6 mx-auto">
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="first-name"
+                      className="block text-sm font-semibold text-gray-700"
                     >
-                      <option value="">Selecione</option>
-                      <option value="Masculino">Masculino</option>
-                      <option value="Feminino">Feminino</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="flex flex-col">
-                  <label htmlFor="nome_social" className="font-semibold">
-                    Nome social
-                  </label>
-                  <input
-                    type="text"
-                    id="nome_social"
-                    name="nome_social"
-                    placeholder="Alécio Crás Cunha"
-                    className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-                  />
-                </div>
-                {/* DOCUMENTAÇÃO */}
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="flex flex-col">
-                    <label htmlFor="cpf" className="font-semibold">
-                      CPF
+                      Primeiro Nome
                     </label>
                     <input
                       type="text"
-                      id="cpf"
-                      name="cpf"
-                      placeholder="000.000.000-00"
-                      className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
+                      id="first-name"
+                      autoComplete="first-name"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="rg" className="font-semibold">
-                      RG
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="last-name"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
+                      Último nome
                     </label>
                     <input
                       type="text"
-                      id="rg"
-                      name="rg"
-                      placeholder="0000000000-0"
-                      className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
+                      id="last-name"
+                      autoComplete="family-name"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="cnh" className="font-semibold">
-                      CNH
+                  <div className="col-span-6 sm:col-span-4">
+                    <label
+                      htmlFor="email-address"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
+                      Endereço de Email
                     </label>
                     <input
                       type="text"
-                      id="cnh"
-                      name="cnh"
-                      placeholder="00000000000"
-                      className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
+                      id="email-address"
+                      autoComplete="email-address"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     />
                   </div>
-                </div>
-                <div className="flex gap-3">
-                  <div className="flex flex-col">
-                    <label htmlFor="grau" className="font-semibold">
-                      Grau de instrução
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="country"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
+                      País
                     </label>
                     <select
-                      name="grau"
-                      id="grau"
-                      className="bg-zinc-900 py-1 px-2 w-40 rounded text-sm text-zinc-400 md:w-fit"
+                      id="country"
+                      autoComplete="country-name"
+                      className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     >
-                      <option value="">Selecione</option>
-                      <option value="GI_01">
-                        Analfabeto, inclusive o que, embora tenha recebido
-                        instrução, não se alfabetizou
-                      </option>
-                      <option value="GI_02">
-                        Até o 5º ano incompleto do ensino fundamental
-                      </option>
-                      <option value="GI_03">
-                        5º ano completo do ensino fundamental
-                      </option>
-                      <option value="GI_04">
-                        Do 6º ao 9º ano do ensino fundamental incompleto
-                      </option>
-                      <option value="GI_05">Ensino fundamental completo</option>
-                      <option value="GI_06">Ensino médio incompleto</option>
-                      <option value="GI_07">Ensino médio completo</option>
-                      <option value="GI_08">
-                        Educação superior incompleta
-                      </option>
-                      <option value="GI_09">Educação superior completa</option>
-                      <option value="GI_10">Pós-graduação completa</option>
-                      <option value="GI_11">Mestrado completo</option>
-                      <option value="GI_12">Doutorado completo</option>
+                      <option value="">Estados Unidos</option>
+                      <option value="">Estados Unidos</option>
+                      <option value="">Estados Unidos</option>
                     </select>
                   </div>
-                  <div className="flex flex-col flex-1">
-                    <label htmlFor="civil" className="font-semibold">
-                      Estado Civil
+                  <div className="col-span-6">
+                    <label
+                      htmlFor="street-address"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
+                      Endereço
                     </label>
-                    <select
-                      name="civil"
-                      id="civil"
-                      className="bg-zinc-900 text-zinc-400 py-1 px-2 rounded text-sm"
-                    >
-                      <option value="">Selecione</option>
-                      <option value="solteiro">Solteiro</option>
-                      <option value="Casado">Casado</option>
-                      <option value="Viúvo(a)">Viúvo(a)</option>
-                      <option value="Divorciado(a)">Divorciado(a)</option>
-                    </select>
+                    <input
+                      type="text"
+                      id="street-address"
+                      autoComplete="street-address"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                    />
                   </div>
-                </div>
-              </fieldset>
-              <fieldset className="flex flex-col gap-3 p-3 border border-solid border-gray-700">
-                <legend className="px-2 font-semibold">Dados pessoais</legend>
-                <div className="flex flex-col">
-                  <label htmlFor="endereco" className="font-semibold">
-                    Endereço
-                  </label>
-                  <input
-                    type="text"
-                    id="endereco"
-                    name="endereco"
-                    placeholder="Avenida Beira Mar"
-                    className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-                  />
-                </div>
-                <div className="grid grid-cols-4 gap-3">
-                  <div className="flex flex-col">
-                    <label htmlFor="cidade" className="font-semibold">
+                  <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                    <label
+                      htmlFor="city"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
                       Cidade
                     </label>
                     <input
                       type="text"
-                      id="cidade"
-                      name="cidade"
-                      placeholder="Fortaleza"
-                      className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
+                      id="city"
+                      autoComplete="address-level2"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="estado" className="font-semibold">
+                  <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label
+                      htmlFor="region"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
                       Estado
                     </label>
                     <input
                       type="text"
-                      id="estado"
-                      name="estado"
-                      placeholder="Ceará"
-                      className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
+                      id="region"
+                      autoComplete="region"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="pais" className="font-semibold">
-                      País
-                    </label>
-                    <input
-                      type="text"
-                      id="pais"
-                      name="pais"
-                      placeholder="Brasil"
-                      className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="cep" className="font-semibold">
+                  <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label
+                      htmlFor="postal-code"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
                       CEP
                     </label>
                     <input
                       type="text"
-                      id="cep"
-                      name="cep"
-                      placeholder="60165-120"
-                      className="bg-zinc-900 px-2 py-1 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
+                      id="postal-code"
+                      autoComplete="postal-code"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="flex flex-col">
-                    <label htmlFor="email" className="font-semibold">
-                      Email
-                    </label>
-                    <input
-                      type="text"
-                      name="email"
-                      id="email"
-                      placeholder="example@email.com"
-                      className="bg-zinc-900 py-1 px-2 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="contato" className="font-semibold">
-                      Contato
-                    </label>
-                    <input
-                      type="text"
-                      name="contato"
-                      id="contato"
-                      placeholder="(00) 00000-0000"
-                      className="bg-zinc-900 py-1 px-2 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-                    />
-                  </div>
-                </div>
-              </fieldset>
-              <footer className="flex justify-end mt-4">
+              </div>
+              <div className="bg-zinc-50 px-4 py-3 text-right sm:px-6">
                 <button
                   type="submit"
-                  className="flex items-center gap-3 bg-blue-500 px-5 h-12 rounded-md font-semibold text-white"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Cadastrar
-                </button>
-              </footer>
-            </div>
-            <div className="flex items-center justify-center mx-auto">
-              <div className="relative w-full max-w-sm">
-                <img
-                  src="https://github.com/pedrojorge148.png"
-                  alt="Foto de usuário"
-                  className="w-56 h-56 rounded-full"
-                />
-                <button className="absolute px-5 py-1 rounded bg-zinc-400 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  Button
                 </button>
               </div>
             </div>
           </form>
         </div>
       </div>
-    </div>
+    </>
   )
 }
