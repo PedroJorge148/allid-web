@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bell, Info, List, User, X } from 'phosphor-react'
+import { NavLink } from 'react-router-dom'
 
 const user = {
   name: 'Tom Cook',
@@ -8,7 +9,11 @@ const user = {
 }
 const navigation = [
   { name: 'Início', href: '/dashboard', current: true },
-  { name: 'Cadastro de Usuários', href: '#', current: false },
+  {
+    name: 'Cadastro de Informaçãoes',
+    href: '/dashboard/reginfo',
+    current: false,
+  },
 ]
 const userNavigation = [
   { name: 'Seu perfil', href: '#' },
@@ -24,7 +29,7 @@ export function Nav() {
   return (
     <>
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-zinc-100">
+        <Disclosure as="nav" className="bg-white shadow">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -39,14 +44,14 @@ export function Nav() {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <NavLink
                             key={item.name}
-                            href={item.href}
+                            to={item.href}
                             className="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2  rounded-md text-sm font-medium transition-colors"
                             aria-current={item.current ? 'page' : undefined}
                           >
                             {item.name}
-                          </a>
+                          </NavLink>
                         ))}
                       </div>
                     </div>
@@ -82,15 +87,15 @@ export function Nav() {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
+                                  <NavLink
+                                    to={item.href}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700',
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </NavLink>
                                 )}
                               </Menu.Item>
                             ))}
@@ -170,14 +175,6 @@ export function Nav() {
             </>
           )}
         </Disclosure>
-
-        <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              Dashboard
-            </h1>
-          </div>
-        </header>
       </div>
     </>
   )
