@@ -64,7 +64,7 @@ const cards = [
 export function RegInfo() {
   return (
     <div className="flex items-center justify-center mt-8">
-      <div className="grid grid-cols-4 grid-rows-2 gap-8 p-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-8 p-8">
         {cards.map((card, i) => {
           return (
             <div
@@ -74,7 +74,9 @@ export function RegInfo() {
               <div className="flex flex-col items-center justify-between">
                 <div className="flex flex-col items-center gap-1">
                   {card.Icon}
-                  <h2 className="text-gray-800 text-xl">{card.title}</h2>
+                  <h2 className="text-gray-800 text-xl text-center">
+                    {card.title}
+                  </h2>
                 </div>
               </div>
               <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5" />

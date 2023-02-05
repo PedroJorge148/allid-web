@@ -10,7 +10,7 @@ const user = {
 const navigation = [
   { name: 'Início', href: '/dashboard', current: true },
   {
-    name: 'Cadastro de Informaçãoes',
+    name: 'Cadastro de Informações',
     href: '/dashboard/reginfo',
     current: false,
   },
@@ -20,10 +20,6 @@ const userNavigation = [
   { name: 'Configurações', href: '#' },
   { name: 'Sair', href: '#' },
 ]
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export function Nav() {
   return (
@@ -62,7 +58,7 @@ export function Nav() {
                         type="button"
                         className="rounded-full p-1 text-gray-800 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
-                        <span className="sr-only">View notifications</span>
+                        <span className="sr-only">Ver notificações</span>
                         <Bell className="h-8 w-8" aria-hidden="true" />
                       </button>
 
@@ -70,7 +66,9 @@ export function Nav() {
                       <Menu as="div" className="relative ml-3">
                         <div>
                           <Menu.Button className="flex max-w-xs items-center rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                            <span className="sr-only">Open user menu</span>
+                            <span className="sr-only">
+                              Abrir menu do usuário
+                            </span>
                             <User className="h-8 w-8 rounded-full" />
                           </Menu.Button>
                         </div>
@@ -89,10 +87,7 @@ export function Nav() {
                                 {({ active }) => (
                                   <NavLink
                                     to={item.href}
-                                    className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700',
-                                    )}
+                                    className="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2  rounded-md text-sm font-medium transition-colors"
                                   >
                                     {item.name}
                                   </NavLink>
@@ -106,8 +101,8 @@ export function Nav() {
                   </div>
                   <div className="-mr-2 flex md:hidden">
                     {/* Mobile menu button */}
-                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="sr-only">Open main menu</span>
+                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-800 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition-colors">
+                      <span className="sr-only">Abrir menu</span>
                       {open ? (
                         <X className="block h-6 w-6" aria-hidden="true" />
                       ) : (
@@ -125,12 +120,7 @@ export function Nav() {
                       key={item.name}
                       as="a"
                       href={item.href}
-                      className={classNames(
-                        item.current
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block px-3 py-2 rounded-md text-base font-medium',
-                      )}
+                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-white transition-colors"
                       aria-current={item.current ? 'page' : undefined}
                     >
                       {item.name}
@@ -143,18 +133,18 @@ export function Nav() {
                       <User className="h-8 w-8 rounded-full" />
                     </div>
                     <div className="ml-3">
-                      <div className="text-base font-medium leading-none text-white">
+                      <div className="text-base font-medium leading-none text-gray-800">
                         {user.name}
                       </div>
-                      <div className="text-sm font-medium leading-none text-gray-400">
+                      <div className="text-sm font-medium leading-none text-gray-700">
                         {user.email}
                       </div>
                     </div>
                     <button
                       type="button"
-                      className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      className="ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-800 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition-colors"
                     >
-                      <span className="sr-only">View notifications</span>
+                      <span className="sr-only">Ver notificações</span>
                       <Bell className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
@@ -164,7 +154,7 @@ export function Nav() {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-white transition-colors"
                       >
                         {item.name}
                       </Disclosure.Button>
