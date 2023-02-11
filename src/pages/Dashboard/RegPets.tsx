@@ -1,75 +1,124 @@
-import { Typography } from '@mui/material'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
+const regDataPetsSchema = z.object({
+  petName: z.string(),
+  race: z.string(),
+  type: z.string(),
+  vaccined: z.enum(['Sim', 'Não']),
+})
+
+type RegDataPetsFormInputs = z.infer<typeof regDataPetsSchema>
 
 export function RegPets() {
+  const { register, handleSubmit, watch } = useForm<RegDataPetsFormInputs>({
+    resolver: zodResolver(regDataPetsSchema),
+  })
+
+  function handlePetsFormSubmit(data: RegDataPetsFormInputs) {
+    console.log(data)
+  }
+
   return (
-    <div>
-      <div className="flex flex-col w-[35%] m-auto mt-10">
-        <Typography className="font-bold">
-          Cadastro de informações {'->'} Pets
-        </Typography>
-        <div className="flex p-6 bg-zinc-400 rounded-lg border-b-2-cyan-500">
-          <form className="flex flex-col gap-3 w-full">
-            <div className="flex flex-col gap-2">
-              <label htmlFor="nome_pet" className="font-semibold">
-                Nome do pet
-              </label>
-              <input
-                type="text"
-                id="nome_pet"
-                name="nome_pet"
-                placeholder="Rex"
-                className="bg-zinc-900 py-1 px-2 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-              />
+    <>
+      <div className="md:grid md:grid-cols-3 md:gap-6 white py-4">
+        <div className="md:col-span-1">
+          <div className="px-4 sm:p-4">
+            <h3 className="text-lg font-bold leading-6 text-gray-800">
+              Cadastrar dados do pet
+            </h3>
+            <p className="mt-1 text-sm font-medium text-gray-700">
+              Confira os dados antes de cadastrar.
+            </p>
+            <pre className="flex flex-wrap">
+              {JSON.stringify(watch(), null, 2)}
+            </pre>
+          </div>
+        </div>
+        <div className="mt-5 md:col-span-2">
+          <form onSubmit={handleSubmit(handlePetsFormSubmit)}>
+            <div className="overflow-hidden shadow sm:rounded-md mr-4">
+              <div className="bg-white px-4 py-5 sm:p-6">
+                <div className="grid grid-cols-6 gap-6 mx-auto">
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="pet-name"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
+                      Nome do pet
+                    </label>
+                    <input
+                      type="text"
+                      id="pet-name"
+                      autoComplete="pet-name"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('petName')}
+                    />
+                  </div>
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="race"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
+                      Raça
+                    </label>
+                    <input
+                      type="text"
+                      id="race"
+                      autoComplete="race"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('race')}
+                    />
+                  </div>
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="type"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
+                      Tipo
+                    </label>
+                    <input
+                      type="text"
+                      id="type"
+                      autoComplete="type"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('type')}
+                    />
+                  </div>
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="visibility"
+                      className="block text-sm font-semibold text-gray-700"
+                    >
+                      Vacinado
+                    </label>
+                    <select
+                      id="visibility"
+                      autoComplete="visibility"
+                      className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('vaccined')}
+                    >
+                      <option>Selecione</option>
+                      <option value="Sim">Sim</option>
+                      <option value="Não">Não</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-zinc-50 px-4 py-3 text-right sm:px-6">
+                <button
+                  type="submit"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Cadastrar
+                </button>
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="raca_pet" className="font-semibold">
-                Raça
-              </label>
-              <input
-                type="text"
-                id="raca_pet"
-                name="raca_pet"
-                placeholder="Labrador"
-                className="bg-zinc-900 py-1 px-2 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="tipo_pet" className="font-semibold">
-                Tipo
-              </label>
-              <input
-                type="text"
-                id="tipo_pet"
-                name="tipo_pet"
-                placeholder="Cachorro"
-                className="bg-zinc-900 py-1 px-2 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="nome" className="font-semibold">
-                Vacinado?
-              </label>
-              <select
-                name="alergias"
-                id="alergias"
-                className="bg-zinc-900 py-2 px-2 rounded text-sm text-zinc-400 placeholder:text-zinc-400"
-              >
-                <option value="">Selecione</option>
-                <option value="1">Sim</option>
-                <option value="0">Não</option>
-              </select>
-            </div>
-            <footer className="flex justify-end mt-4">
-              <button
-                type="submit"
-                className="flex items-center gap-3 bg-blue-500 px-5 h-12 rounded-md font-semibold text-white"
-              >
-                Cadastrar
-              </button>
-            </footer>
           </form>
         </div>
       </div>
-    </div>
+    </>
   )
 }

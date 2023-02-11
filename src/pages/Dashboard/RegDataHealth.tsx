@@ -1,38 +1,29 @@
-// import { zodResolver } from '@hookform/resolvers/zod'
-// import { useState } from 'react'
-// import { useForm } from 'react-hook-form'
-// import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 import InputMask from 'react-input-mask'
 
-/* const regDataUserSchema = z.object({
-  fullName: z.string(),
-  birth: z.date(),
-  email: z.string().email(),
-  contatc: z.string(),
-  maritalState: z.string(),
-  schoolDegree: z.string(),
-  genre: z.string(),
-  socialName: z.string().optional(),
-  cpf: z.string(),
-  rg: z.string(),
-  cnh: z.string(),
-  streetAdrress: z.string(),
-  city: z.string(),
-  country: z.string(),
-  cep: z.string(),
+const bloodTypes = ['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-'] as const
+
+const regDataHealthSchema = z.object({
+  hospital: z.string(),
+  bloodType: z.enum(bloodTypes),
+  emergencyContact: z.string(),
+  covidCode: z.string(),
+  healthPlan: z.enum(['Sim', 'Não']),
+  allergies: z.enum(['Sim', 'Não']),
 })
 
-type RegDataUserFormInputs = z.infer<typeof regDataUserSchema>
-*/
+type RegDataHealthFormInputs = z.infer<typeof regDataHealthSchema>
+
 export function RegDataHealth() {
-  /*
-  const { register, handleSubmit, watch } = useForm<RegDataUserFormInputs>({
-    resolver: zodResolver(regDataUserSchema),
+  const { register, handleSubmit, watch } = useForm<RegDataHealthFormInputs>({
+    resolver: zodResolver(regDataHealthSchema),
   })
 
-  function handleUserFormSubmit(data: RegDataUserFormInputs) {
+  function handleHealthFormSubmit(data: RegDataHealthFormInputs) {
     console.log(data)
-  } */
+  }
 
   return (
     <>
@@ -44,14 +35,12 @@ export function RegDataHealth() {
             </h3>
             <p className="mt-1 text-sm font-medium text-gray-700">
               Confira os dados antes de cadastrar.
-              {/* <pre className="flex flex-wrap">
-                {JSON.stringify(watch(), null, 2)}
-              </pre> */}
             </p>
+            <pre>{JSON.stringify(watch(), null, 2)}</pre>
           </div>
         </div>
         <div className="mt-5 md:col-span-2">
-          <form>
+          <form onSubmit={handleSubmit(handleHealthFormSubmit)}>
             <div className="overflow-hidden shadow sm:rounded-md mr-4">
               <div className="bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-6 gap-6 mx-auto">
@@ -67,8 +56,10 @@ export function RegDataHealth() {
                       id="hospital"
                       autoComplete="hospital"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('hospital')}
                     />
                   </div>
+
                   <div className="col-span-6 sm:col-span-2">
                     <label
                       htmlFor="blood-type"
@@ -80,21 +71,18 @@ export function RegDataHealth() {
                       id="blood-type"
                       autoComplete="blood-type"
                       className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('bloodType')}
                     >
-                      <option selected disabled>
-                        Selecione
-                      </option>
-                      <option value="A+">A+</option>
-                      <option value="B+">B+</option>
-                      <option value="AB+">AB+</option>
-                      <option value="O+">O+</option>
-                      <option value="A-">A-</option>
-                      <option value="B-">B-</option>
-                      <option value="AB-">AB-</option>
-                      <option value="O-">O-</option>
+                      <option value="">Selecione</option>
+                      {bloodTypes.map((t) => {
+                        return (
+                          <option key={t} value={t}>
+                            {t}
+                          </option>
+                        )
+                      })}
                     </select>
                   </div>
-
                   <div className="col-span-6 sm:col-span-2">
                     <label
                       htmlFor="emergency-contact"
@@ -108,6 +96,7 @@ export function RegDataHealth() {
                       id="emergency-contact"
                       autoComplete="emergency-contact"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('emergencyContact')}
                     />
                   </div>
                   <div className="col-span-6 sm:col-span-2">
@@ -122,6 +111,7 @@ export function RegDataHealth() {
                       id="covid-code"
                       autoComplete="covid-code"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('covidCode')}
                     />
                   </div>
 
@@ -136,12 +126,11 @@ export function RegDataHealth() {
                       id="health-plan"
                       autoComplete="health-plan"
                       className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('healthPlan')}
                     >
-                      <option selected disabled>
-                        Selecione
-                      </option>
-                      <option value="0">Não</option>
-                      <option value="1">Sim</option>
+                      <option value="">Selecione</option>
+                      <option value="Não">Não</option>
+                      <option value="Sim">Sim</option>
                     </select>
                   </div>
                   <div className="col-span-6 sm:col-span-3">
@@ -155,12 +144,11 @@ export function RegDataHealth() {
                       id="allergies"
                       autoComplete="allergies"
                       className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('allergies')}
                     >
-                      <option selected disabled>
-                        Selecione
-                      </option>
-                      <option value="0">Não</option>
-                      <option value="1">Sim</option>
+                      <option value="">Selecione</option>
+                      <option value="Não">Não</option>
+                      <option value="Sim">Sim</option>
                     </select>
                   </div>
                 </div>

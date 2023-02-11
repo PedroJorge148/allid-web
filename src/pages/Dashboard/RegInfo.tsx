@@ -16,48 +16,56 @@ const cards = [
     Icon: <Folders className="h-10 w-10 text-blue-600" weight="fill" />,
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, incidunt?',
+    href: '/dashboard/regdatauser',
   },
   {
     title: 'Dados de saúde',
     Icon: <Heartbeat className="h-10 w-10 text-blue-600" weight="fill" />,
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, incidunt?',
+    href: '/dashboard/regdatahealth',
   },
   {
     title: 'Dados profissionais',
     Icon: <Briefcase className="h-10 w-10 text-blue-600" weight="fill" />,
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, incidunt?',
+    href: '/dashboard/#',
   },
   {
     title: 'Documentos',
     Icon: <Files className="h-10 w-10 text-blue-600" weight="fill" />,
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, incidunt?',
+    href: '/dashboard/regdocuments',
   },
   {
     title: 'Redes sociais',
     Icon: <ChatsCircle className="h-10 w-10 text-blue-600" weight="fill" />,
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, incidunt?',
+    href: '/dashboard/regsocialmedia',
   },
   {
     title: 'Dados escolares',
     Icon: <Student className="h-10 w-10 text-blue-600" weight="fill" />,
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, incidunt?',
+    href: '/dashboard/#',
   },
   {
     title: 'Dependentes',
     Icon: <Baby className="h-10 w-10 text-blue-600" />,
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, incidunt?',
+    href: '/dashboard/regdependents',
   },
   {
     title: 'Pets',
     Icon: <PawPrint className="h-10 w-10 text-blue-600" weight="fill" />,
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, incidunt?',
+    href: '/dashboard/regpets',
   },
 ]
 
@@ -84,7 +92,7 @@ export function RegInfo() {
                 {card.description}
               </p>
               <NavLink
-                to="#"
+                to={card.href}
                 className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white font-medium text-sm leading-snug rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800"
               >
                 Acessar

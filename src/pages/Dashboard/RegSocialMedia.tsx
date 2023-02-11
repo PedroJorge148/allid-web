@@ -1,37 +1,28 @@
-// import { zodResolver } from '@hookform/resolvers/zod'
-// import { useState } from 'react'
-// import { useForm } from 'react-hook-form'
-// import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
-/* const regDataUserSchema = z.object({
-  fullName: z.string(),
-  birth: z.date(),
-  email: z.string().email(),
-  contatc: z.string(),
-  maritalState: z.string(),
-  schoolDegree: z.string(),
-  genre: z.string(),
-  socialName: z.string().optional(),
-  cpf: z.string(),
-  rg: z.string(),
-  cnh: z.string(),
-  streetAdrress: z.string(),
-  city: z.string(),
-  country: z.string(),
-  cep: z.string(),
+const regSocialMediaSchema = z.object({
+  instagram: z.string(),
+  facebook: z.string(),
+  linkedin: z.string(),
+  twitter: z.string(),
+  twitch: z.string(),
+  youtube: z.string(),
+  tiktok: z.string(),
+  kwai: z.string(),
 })
 
-type RegDataUserFormInputs = z.infer<typeof regDataUserSchema>
-*/
+type RegSocialMediaFormInputs = z.infer<typeof regSocialMediaSchema>
+
 export function RegSocialMedia() {
-  /*
-  const { register, handleSubmit, watch } = useForm<RegDataUserFormInputs>({
-    resolver: zodResolver(regDataUserSchema),
+  const { register, handleSubmit, watch } = useForm<RegSocialMediaFormInputs>({
+    resolver: zodResolver(regSocialMediaSchema),
   })
 
-  function handleUserFormSubmit(data: RegDataUserFormInputs) {
+  function handleSocialMediaFormSubmit(data: RegSocialMediaFormInputs) {
     console.log(data)
-  } */
+  }
 
   return (
     <>
@@ -43,14 +34,14 @@ export function RegSocialMedia() {
             </h3>
             <p className="mt-1 text-sm font-medium text-gray-700">
               Confira os dados antes de cadastrar.
-              {/* <pre className="flex flex-wrap">
-                {JSON.stringify(watch(), null, 2)}
-              </pre> */}
             </p>
+            <pre className="flex flex-wrap">
+              {JSON.stringify(watch(), null, 2)}
+            </pre>
           </div>
         </div>
         <div className="mt-5 md:col-span-2">
-          <form>
+          <form onSubmit={handleSubmit(handleSocialMediaFormSubmit)}>
             <div className="overflow-hidden shadow sm:rounded-md mr-4">
               <div className="bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-6 gap-6 mx-auto">
@@ -70,6 +61,7 @@ export function RegSocialMedia() {
                         id="instagram"
                         autoComplete="instagram"
                         className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        {...register('instagram')}
                       />
                     </div>
                   </div>
@@ -90,6 +82,7 @@ export function RegSocialMedia() {
                         id="facebook"
                         autoComplete="facebook"
                         className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        {...register('facebook')}
                       />
                     </div>
                   </div>
@@ -110,6 +103,7 @@ export function RegSocialMedia() {
                         id="linkedin"
                         autoComplete="linkedin"
                         className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        {...register('linkedin')}
                       />
                     </div>
                   </div>
@@ -129,6 +123,7 @@ export function RegSocialMedia() {
                         id="twitter"
                         autoComplete="twitter"
                         className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        {...register('twitter')}
                       />
                     </div>
                   </div>
@@ -148,6 +143,7 @@ export function RegSocialMedia() {
                         id="twitch"
                         autoComplete="twitch"
                         className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        {...register('twitch')}
                       />
                     </div>
                   </div>
@@ -167,31 +163,33 @@ export function RegSocialMedia() {
                         id="youtube"
                         autoComplete="youtube"
                         className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        {...register('youtube')}
                       />
                     </div>
                   </div>
                   <div className="col-span-6 sm:col-span-3">
                     <label
-                      htmlFor="facebook"
+                      htmlFor="tik-tok"
                       className="block text-sm font-semibold text-gray-700"
                     >
                       Tik Tok
                     </label>
                     <div className="flex rounded-md shadow-sm">
                       <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                        https://www.tiktok.com/@
+                        https://www.tiktok.com/
                       </span>
                       <input
                         type="text"
-                        id="facebook"
-                        autoComplete="facebook"
+                        id="tik-tok"
+                        autoComplete="tik-tok"
                         className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        {...register('tiktok')}
                       />
                     </div>
                   </div>
                   <div className="col-span-6 sm:col-span-3">
                     <label
-                      htmlFor="facebook"
+                      htmlFor="kwai"
                       className="block text-sm font-semibold text-gray-700"
                     >
                       Kwai
@@ -199,10 +197,11 @@ export function RegSocialMedia() {
                     <div className="flex rounded-md shadow-sm">
                       <input
                         type="text"
-                        id="facebook"
-                        autoComplete="facebook"
+                        id="kwai"
+                        autoComplete="kwai"
                         placeholder="@usuário"
                         className="block w-full flex-1 rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        {...register('kwai')}
                       />
                     </div>
                   </div>

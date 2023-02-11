@@ -9,9 +9,15 @@ const regDataUserSchema = z.object({
   birth: z.date(),
   email: z.string().email(),
   contatc: z.string(),
-  maritalState: z.string(),
+  maritalState: z.enum([
+    'Solteiro',
+    'Casado',
+    'Divorciado',
+    'Separado',
+    'ViViúvoúvo',
+  ]),
   schoolDegree: z.string(),
-  genre: z.string(),
+  genre: z.enum(['Masculino', 'Feminino', 'Outro']),
   socialName: z.string().optional(),
   cpf: z.string(),
   rg: z.string(),
@@ -27,7 +33,7 @@ type RegDataUserFormInputs = z.infer<typeof regDataUserSchema>
 export function RegDataUser() {
   const [hasSocialName, setHasSocialName] = useState(false)
 
-  const { register, handleSubmit } = useForm<RegDataUserFormInputs>({
+  const { register, handleSubmit, watch } = useForm<RegDataUserFormInputs>({
     resolver: zodResolver(regDataUserSchema),
   })
 
@@ -46,6 +52,9 @@ export function RegDataUser() {
             <p className="mt-1 text-sm font-medium text-gray-700">
               Confira os dados antes de cadastrar.
             </p>
+            <pre className="flex flex-col">
+              {JSON.stringify(watch(), null, 2)}
+            </pre>
           </div>
         </div>
         <div className="mt-5 md:col-span-2">
@@ -129,9 +138,7 @@ export function RegDataUser() {
                       className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                       {...register('maritalState')}
                     >
-                      <option selected disabled>
-                        Selecione
-                      </option>
+                      <option value="">Selecione</option>
                       <option value="Solteiro">Solteiro</option>
                       <option value="Casado">Casado</option>
                       <option value="Divorciado">Divorciado</option>
@@ -152,9 +159,7 @@ export function RegDataUser() {
                       className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                       {...register('schoolDegree')}
                     >
-                      <option selected disabled>
-                        Selecione
-                      </option>
+                      <option value="">Selecione</option>
                       <option value="GI_01">Analfabeto</option>
                       <option value="GI_02">
                         Até o 5º ano incompleto do ensino fundamental
@@ -190,9 +195,7 @@ export function RegDataUser() {
                       className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                       {...register('genre')}
                     >
-                      <option selected disabled>
-                        Selecione
-                      </option>
+                      <option value="">Selecione</option>
                       <option value="Masculino">Masculino</option>
                       <option value="Feminino">Feminino</option>
                       <option value="Outro">Outro</option>
@@ -224,6 +227,7 @@ export function RegDataUser() {
                       onClick={() => {
                         setHasSocialName(!hasSocialName)
                       }}
+                      readOnly
                     />
                     <label
                       className="form-check-label inline-block text-gray-800"
@@ -264,6 +268,7 @@ export function RegDataUser() {
                       id="rg"
                       autoComplete="rg"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      maxLength={11}
                       {...register('rg')}
                     />
                   </div>
@@ -317,15 +322,15 @@ export function RegDataUser() {
                   </div>
                   <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                     <label
-                      htmlFor="region"
+                      htmlFor="country"
                       className="block text-sm font-semibold text-gray-700"
                     >
                       Estado
                     </label>
                     <input
                       type="text"
-                      id="region"
-                      autoComplete="region"
+                      id="country"
+                      autoComplete="country"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                       {...register('country')}
                     />

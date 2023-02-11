@@ -1,38 +1,28 @@
-// import { zodResolver } from '@hookform/resolvers/zod'
-// import { useState } from 'react'
-// import { useForm } from 'react-hook-form'
-// import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 import InputMask from 'react-input-mask'
 
-/* const regDataUserSchema = z.object({
-  fullName: z.string(),
-  birth: z.date(),
-  email: z.string().email(),
-  contatc: z.string(),
-  maritalState: z.string(),
-  schoolDegree: z.string(),
-  genre: z.string(),
-  socialName: z.string().optional(),
-  cpf: z.string(),
-  rg: z.string(),
-  cnh: z.string(),
-  streetAdrress: z.string(),
-  city: z.string(),
-  country: z.string(),
-  cep: z.string(),
+const regDataDepedentSchema = z.object({
+  dependentName: z.string(),
+  dependentBirth: z.date(),
+  dependentContact: z.string(),
+  dependentCpf: z.string().min(14, 'Digite um CPF válido'),
+  dependentRG: z.string().max(11),
 })
 
-type RegDataUserFormInputs = z.infer<typeof regDataUserSchema>
-*/
-export function RegDependents() {
-  /*
-  const { register, handleSubmit, watch } = useForm<RegDataUserFormInputs>({
-    resolver: zodResolver(regDataUserSchema),
-  })
+type RegDataDependentFormInputs = z.infer<typeof regDataDepedentSchema>
 
-  function handleUserFormSubmit(data: RegDataUserFormInputs) {
+export function RegDependents() {
+  const { register, handleSubmit, watch } = useForm<RegDataDependentFormInputs>(
+    {
+      resolver: zodResolver(regDataDepedentSchema),
+    },
+  )
+
+  function handleDependentFormSubmit(data: RegDataDependentFormInputs) {
     console.log(data)
-  } */
+  }
 
   return (
     <>
@@ -44,18 +34,18 @@ export function RegDependents() {
             </h3>
             <p className="mt-1 text-sm font-medium text-gray-700">
               Confira os dados antes de cadastrar.
-              {/* <pre className="flex flex-wrap">
-                {JSON.stringify(watch(), null, 2)}
-              </pre> */}
             </p>
+            <pre className="flex flex-wrap">
+              {JSON.stringify(watch(), null, 2)}
+            </pre>
           </div>
         </div>
         <div className="mt-5 md:col-span-2">
-          <form>
+          <form onSubmit={handleSubmit(handleDependentFormSubmit)}>
             <div className="overflow-hidden shadow sm:rounded-md mr-4">
               <div className="bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-6 gap-6 mx-auto">
-                  <div className="col-span-6 sm:col-span-6">
+                  <div className="col-span-6">
                     <label
                       htmlFor="dependent-name"
                       className="block text-sm font-semibold text-gray-700"
@@ -67,6 +57,7 @@ export function RegDependents() {
                       id="dependent-name"
                       autoComplete="dependent-name"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('dependentName')}
                     />
                   </div>
                   <div className="col-span-6 md:col-span-3">
@@ -81,12 +72,13 @@ export function RegDependents() {
                       id="dependent-birth"
                       autoComplete="dependent-birth"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('dependentBirth', { valueAsDate: true })}
                     />
                   </div>
 
                   <div className="col-span-6 sm:col-span-3">
                     <label
-                      htmlFor="emergency-contact"
+                      htmlFor="dependent-contact"
                       className="block text-sm font-semibold text-gray-700"
                     >
                       Contato
@@ -94,9 +86,10 @@ export function RegDependents() {
                     <InputMask
                       mask="(99) 99999-9999"
                       type="text"
-                      id="emergency-contact"
-                      autoComplete="emergency-contact"
+                      id="dependent-contact"
+                      autoComplete="dependent-contact"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('dependentContact')}
                     />
                   </div>
                   <div className="col-span-6 sm:col-span-3">
@@ -112,6 +105,7 @@ export function RegDependents() {
                       id="covid-code"
                       autoComplete="covid-code"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('dependentCpf')}
                     />
                   </div>
 
@@ -123,11 +117,12 @@ export function RegDependents() {
                       RG
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       id="covid-code"
                       autoComplete="covid-code"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                       maxLength={11}
+                      {...register('dependentRG')}
                     />
                   </div>
                 </div>
