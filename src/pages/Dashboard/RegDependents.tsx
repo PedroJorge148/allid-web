@@ -14,11 +14,9 @@ const regDataDepedentSchema = z.object({
 type RegDataDependentFormInputs = z.infer<typeof regDataDepedentSchema>
 
 export function RegDependents() {
-  const { register, handleSubmit, watch } = useForm<RegDataDependentFormInputs>(
-    {
-      resolver: zodResolver(regDataDepedentSchema),
-    },
-  )
+  const { register, handleSubmit } = useForm<RegDataDependentFormInputs>({
+    resolver: zodResolver(regDataDepedentSchema),
+  })
 
   function handleDependentFormSubmit(data: RegDataDependentFormInputs) {
     console.log(data)
@@ -35,9 +33,6 @@ export function RegDependents() {
             <p className="mt-1 text-sm font-medium text-gray-700">
               Confira os dados antes de cadastrar.
             </p>
-            <pre className="flex flex-wrap">
-              {JSON.stringify(watch(), null, 2)}
-            </pre>
           </div>
         </div>
         <div className="mt-5 md:col-span-2">

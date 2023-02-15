@@ -12,7 +12,7 @@ import { NavLink } from 'react-router-dom'
 
 const cards = [
   {
-    title: 'Cadastro de informações',
+    title: 'Dados gerais',
     Icon: <Folders className="h-10 w-10 text-blue-600" weight="fill" />,
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, incidunt?',

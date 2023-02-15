@@ -1,12 +1,8 @@
-import { Typography } from '@mui/material'
-
 export function ShareData() {
   return (
     <div>
       <div className="flex flex-col w-[65%] h-screen m-auto mt-10">
-        <Typography className="py-3 font-bold">
-          Compartilhamento de dados
-        </Typography>
+        <label className="py-3 font-bold">Compartilhamento de dados</label>
         <div className="flex p-6 bg-zinc-400 rounded-lg border-b-2-cyan-500">
           <div className="grid grid-rows-2 gap-3">
             <a

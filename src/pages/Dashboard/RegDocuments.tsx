@@ -43,9 +43,6 @@ export function RegDocuments() {
             </h3>
             <p className="mt-1 text-sm font-medium text-gray-700">
               Confira os dados antes de cadastrar.
-              {/* <pre className="flex flex-wrap">
-                {JSON.stringify(watch(), null, 2)}
-              </pre> */}
             </p>
           </div>
         </div>

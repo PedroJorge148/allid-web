@@ -10,7 +10,7 @@ const user = {
 const navigation = [
   { name: 'Início', href: '/dashboard', current: true },
   {
-    name: 'Cadastro de Informações',
+    name: 'Cadastros',
     href: '/dashboard/reginfo',
     current: false,
   },

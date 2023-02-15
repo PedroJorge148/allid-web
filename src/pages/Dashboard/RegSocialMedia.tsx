@@ -16,7 +16,7 @@ const regSocialMediaSchema = z.object({
 type RegSocialMediaFormInputs = z.infer<typeof regSocialMediaSchema>
 
 export function RegSocialMedia() {
-  const { register, handleSubmit, watch } = useForm<RegSocialMediaFormInputs>({
+  const { register, handleSubmit } = useForm<RegSocialMediaFormInputs>({
     resolver: zodResolver(regSocialMediaSchema),
   })
 
@@ -35,9 +35,6 @@ export function RegSocialMedia() {
             <p className="mt-1 text-sm font-medium text-gray-700">
               Confira os dados antes de cadastrar.
             </p>
-            <pre className="flex flex-wrap">
-              {JSON.stringify(watch(), null, 2)}
-            </pre>
           </div>
         </div>
         <div className="mt-5 md:col-span-2">

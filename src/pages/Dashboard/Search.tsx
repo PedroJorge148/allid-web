@@ -1,10 +1,8 @@
-import { Typography } from '@mui/material'
-
 export function Search() {
   return (
     <div>
       <div className="flex flex-col w-[45%] h-screen m-auto mt-10">
-        <Typography className="font-bold">Buscar</Typography>
+        <label className="font-bold">Buscar</label>
         <div className="flex p-6 bg-zinc-400 rounded-lg border-b-2-cyan-500">
           <form className="flex flex-col gap-3 w-full">
             <div className="flex gap-2">

@@ -33,7 +33,7 @@ type RegDataUserFormInputs = z.infer<typeof regDataUserSchema>
 export function RegDataUser() {
   const [hasSocialName, setHasSocialName] = useState(false)
 
-  const { register, handleSubmit, watch } = useForm<RegDataUserFormInputs>({
+  const { register, handleSubmit } = useForm<RegDataUserFormInputs>({
     resolver: zodResolver(regDataUserSchema),
   })
 
@@ -52,9 +52,6 @@ export function RegDataUser() {
             <p className="mt-1 text-sm font-medium text-gray-700">
               Confira os dados antes de cadastrar.
             </p>
-            <pre className="flex flex-col">
-              {JSON.stringify(watch(), null, 2)}
-            </pre>
           </div>
         </div>
         <div className="mt-5 md:col-span-2">
