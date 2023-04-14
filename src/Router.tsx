@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
 import { Home } from './pages/Dashboard/Home'
@@ -11,15 +11,24 @@ import { RegPets } from './pages/Dashboard/RegPets'
 import { RegDocuments } from './pages/Dashboard/RegDocuments'
 import { Search } from './pages/Dashboard/Search'
 import { ShareData } from './pages/Dashboard/ShareData'
-import { DashboardLayout } from './layouts/DashboardLayout'
+import { PrivateRoute } from './PrivateRoute'
+import { parseCookies } from 'nookies'
 
 export function Router() {
+  const { '@allid.token': token } = parseCookies()
+
   return (
     <Routes>
-      <Route path="/" element={<SignIn />} />
-      <Route path="signup" element={<SignUp />} />
+      <Route
+        path="/"
+        element={!token ? <SignIn /> : <Navigate to="/dashboard" />}
+      />
+      <Route
+        path="signup"
+        element={!token ? <SignUp /> : <Navigate to="/dashboard" />}
+      />
 
-      <Route path="/dashboard" element={<DashboardLayout />}>
+      <Route path="/dashboard" element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Home />} />
         <Route path="/dashboard/reginfo" element={<RegInfo />} />
         <Route path="/dashboard/regdatauser" element={<RegDataUser />} />

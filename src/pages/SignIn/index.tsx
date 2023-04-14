@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeSlash } from 'phosphor-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
 import * as z from 'zod'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const loginValidationSchema = z.object({
   email: z
@@ -28,12 +29,10 @@ export function SignIn() {
     resolver: zodResolver(loginValidationSchema),
   })
 
-  function handlePasswordClick() {
-    setPasswordEye(!passwordEye)
-  }
+  const { signIn } = useContext(AuthContext)
 
-  function handleLoginSubmit(data: LoginData) {
-    console.log(data)
+  async function handleLoginSubmit(data: LoginData) {
+    await signIn(data)
   }
 
   return (
@@ -131,9 +130,17 @@ export function SignIn() {
                 )}
                 <div className="text-2xl absolute inset-y-10 right-3 text-blue-600 hover:text-blue-700">
                   {passwordEye ? (
-                    <EyeSlash onClick={handlePasswordClick} />
+                    <EyeSlash
+                      onClick={() => {
+                        setPasswordEye(!passwordEye)
+                      }}
+                    />
                   ) : (
-                    <Eye onClick={handlePasswordClick} />
+                    <Eye
+                      onClick={() => {
+                        setPasswordEye(!passwordEye)
+                      }}
+                    />
                   )}
                 </div>
               </div>
